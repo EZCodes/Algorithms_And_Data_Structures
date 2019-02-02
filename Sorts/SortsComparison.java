@@ -8,7 +8,7 @@
  *  @version HT 2019
  */
 
- class SortComparison {
+ class SortsComparison {
 
     /**
      * Sorts an array of doubles using InsertionSort.
@@ -18,8 +18,27 @@
      *
      */
     static double [] insertionSort (double a[]){
-
-        //todo: implement the sort
+    	double tmp;
+    	for(int i=1; i<a.length; i++)
+    	{
+    		tmp = a[i];
+    		boolean isInserted = false;
+    		for(int j=i-1;j>=0 && !isInserted;j--)
+    		{
+    			if(tmp < a[j])
+    			{
+    				a[j+1] = a[j];
+    			}
+    			else
+    			{
+    				a[j+1] = tmp;
+    				isInserted = true; // if inserted, exit
+    			}
+    		}
+    		if(!isInserted)
+    			a[0] = tmp; 		
+    	}
+    	return a;
     }//end insertionsort
 
     /**
@@ -31,7 +50,7 @@
      */
     static double [] quickSort (double a[]){
 	
-		 //todo: implement the sort
+		 //TODO: implement the sort
 
     }//end quicksort
 
@@ -52,7 +71,7 @@
 
     static double[] mergeSortIterative (double a[]) {
 
-		 //todo: implement the sort
+		 //TODO: implement the sort
 	
     }//end mergesortIterative
     
@@ -68,7 +87,7 @@
     static double[] mergeSortRecursive (double a[]) {
     	
 
-    	//todo: implement the sort
+    	//TODO: implement the sort
 	
    }//end mergeSortRecursive
     	
@@ -82,7 +101,7 @@
      */
     static double [] selectionSort (double a[]){
 
-         //todo: implement the sort
+         //TODO: implement the sort
 
     }//end selectionsort
 
@@ -91,7 +110,7 @@
 
     public static void main(String[] args) {
 
-        //todo: do experiments as per assignment instructions
+        //TODO: do experiments as per assignment instructions
     }
 
  }//end class

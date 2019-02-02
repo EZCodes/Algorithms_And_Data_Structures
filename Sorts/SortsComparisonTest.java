@@ -18,7 +18,7 @@ public class SortsComparisonTest
     @Test
     public void testConstructor()
     {
-        new SortComparison();
+        new SortsComparison();
     }
 
     //~ Public Methods ........................................................
@@ -30,6 +30,13 @@ public class SortsComparisonTest
     @Test
     public void testEmpty()
     {
+    }
+    @Test
+    public void testSorts()
+    {
+
+    	double a[] = {21.67,5.43,10, 8.94,19.54,};
+    	assertEquals(a,SortsComparison.insertionSort(a));
     }
 
 
