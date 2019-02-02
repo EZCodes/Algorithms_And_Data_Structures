@@ -1,4 +1,6 @@
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,7 +38,9 @@ public class SortsComparisonTest
     {
 
     	double a[] = {21.67,5.43,10, 8.94,19.54,};
-    	assertEquals(a,SortsComparison.insertionSort(a));
+    	double sortedA[] = {5.43, 8.94,10,19.54,21.67};
+    	assertArrayEquals(sortedA,SortsComparison.insertionSort(a));
+    	assertArrayEquals(sortedA,SortsComparison.selectionSort(a));
     }
 
 

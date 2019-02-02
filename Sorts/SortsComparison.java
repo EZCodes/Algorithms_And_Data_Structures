@@ -101,7 +101,22 @@
      */
     static double [] selectionSort (double a[]){
 
-         //TODO: implement the sort
+         for(int i=0;i<a.length;i++)
+         {
+        	 double tmp = a[i];
+        	 int lowest = i;
+        	 for(int j=i+1;j<a.length;j++)
+        	 {
+        		 if(a[j]<tmp)
+        			 lowest = j;
+        	 }
+        	 if(lowest != i) 
+        	 {
+        		 a[i] = a[lowest];
+        		 a[lowest] = tmp;
+        	 }        	 
+         }
+         return a;
 
     }//end selectionsort
 
