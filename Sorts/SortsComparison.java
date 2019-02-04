@@ -85,11 +85,76 @@
      * @return after the method returns, the array must be in ascending sorted order.
      */
     static double[] mergeSortRecursive (double a[]) {
+    	if(a.length<=1)
+    		return a;
+    	int indexOfHalf = a.length/2;
+    	double leftPart[] = mergeSortRecursion(a,0,indexOfHalf-1);
+    	double rightPart[] = mergeSortRecursion(a,indexOfHalf,a.length-1);
     	
+    	double mergedArray[] = new double[leftPart.length+rightPart.length];
+    	int mergedArrayIndex = 0;
+    	int leftCounter = 0;
+    	int rightCounter = 0;
+    	//merge arrays
+    	while(leftCounter<leftPart.length && rightCounter<rightPart.length)
+    	{
+    		if(rightPart[rightCounter]<leftPart[leftCounter])
+    			mergedArray[mergedArrayIndex++] = rightPart[rightCounter++]; // if right is less put it in merged array and post-incerement indexes
+    		else
+    			mergedArray[mergedArrayIndex++] = leftPart[leftCounter++]; // similiar if left is less
+    	}
+    	// put the elements into merged array from left if any left
+    	while(leftCounter<leftPart.length)
+    	{
+    		mergedArray[mergedArrayIndex++] = leftPart[leftCounter++];
+    	}
+    	// put the elements into merged array from right if any left
+    	while(rightCounter<rightPart.length)
+    	{
+    		mergedArray[mergedArrayIndex++] = rightPart[rightCounter++];
+    	}
+    	
+    	return mergedArray;
 
-    	//TODO: implement the sort
 	
    }//end mergeSortRecursive
+    // recursive method for merge sort
+    static private double[] mergeSortRecursion(double a[], int start, int finish){
+    	if(finish-start<1)
+    	{
+    		double[] mergedArray = new double[1];
+    		mergedArray[0] = a[start];
+    		return mergedArray;
+    	}
+    	int indexOfHalf = start+(finish-start)/2; 
+    	double leftPart[] = mergeSortRecursion(a,start,indexOfHalf);
+    	double rightPart[] = mergeSortRecursion(a,indexOfHalf+1,finish);
+    	
+    	double mergedArray[] = new double[leftPart.length+rightPart.length];
+    	int mergedArrayIndex = 0;
+    	int leftCounter = 0;
+    	int rightCounter = 0;
+    	//merge arrays
+    	while(leftCounter<leftPart.length && rightCounter<rightPart.length)
+    	{
+    		if(rightPart[rightCounter]<leftPart[leftCounter])
+    			mergedArray[mergedArrayIndex++] = rightPart[rightCounter++]; // if right is less put it in merged array and post-incerement indexes
+    		else
+    			mergedArray[mergedArrayIndex++] = leftPart[leftCounter++]; // similiar if left is less
+    	}
+    	// put the elements into merged array from left if any left
+    	while(leftCounter<leftPart.length)
+    	{
+    		mergedArray[mergedArrayIndex++] = leftPart[leftCounter++];
+    	}
+    	// put the elements into merged array from right if any left
+    	while(rightCounter<rightPart.length)
+    	{
+    		mergedArray[mergedArrayIndex++] = rightPart[rightCounter++];
+    	}
+    	
+    	return mergedArray;    	
+    }
     	
     
     /**

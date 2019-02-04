@@ -41,6 +41,7 @@ public class SortsComparisonTest
     	double sortedA[] = {5.43, 8.94,10,19.54,21.67};
     	assertArrayEquals(sortedA,SortsComparison.insertionSort(a));
     	assertArrayEquals(sortedA,SortsComparison.selectionSort(a));
+    	assertArrayEquals(sortedA,SortsComparison.mergeSortRecursive(a));
     }
 
 
