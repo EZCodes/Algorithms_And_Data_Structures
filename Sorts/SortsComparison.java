@@ -70,11 +70,50 @@
      */
 
     static double[] mergeSortIterative (double a[]) {
-
-		 //TODO: implement the sort
+    	
+    	   	
+    	for(int sizeOfArray =1; sizeOfArray<a.length; sizeOfArray *= 2)
+    	{
+    		double mergedArray[] = new double[a.length];
+    		int mergedArrayIndex = 0;
+    		
+    		while(mergedArrayIndex < mergedArray.length)
+    		{
+    			int leftArrayIndex = mergedArrayIndex;
+    			int rightArrayIndex = leftArrayIndex+sizeOfArray;
+    			int leftArrayStop = min(rightArrayIndex,mergedArray.length);
+    			int rightArrayStop = min(rightArrayIndex+sizeOfArray, mergedArray.length);
+    			// merge arrays
+    			while(leftArrayIndex<leftArrayStop && rightArrayIndex<rightArrayStop)
+    			{
+    				if(a[leftArrayIndex]>a[rightArrayIndex])
+    					mergedArray[mergedArrayIndex++] = a[rightArrayIndex++];
+    				else
+    					mergedArray[mergedArrayIndex++] = a[leftArrayIndex++];
+    			}
+    	    	// put the elements into merged array from left if any left
+    	    	while(leftArrayIndex<leftArrayStop)
+    	    	{
+    	    		mergedArray[mergedArrayIndex++] = a[leftArrayIndex++];
+    	    	}
+    	    	// put the elements into merged array from right if any left
+    	    	while(rightArrayIndex<rightArrayStop)
+    	    	{
+					mergedArray[mergedArrayIndex++] = a[rightArrayIndex++];
+    	    	}	
+    			
+    		}
+    		a = mergedArray;
+    	}
+    	
+    	return a;
 	
     }//end mergesortIterative
     
+    private static int min(int a, int b)
+    {
+    	return a>b?b:a;
+    }
     
     
     /**

@@ -37,11 +37,12 @@ public class SortsComparisonTest
     public void testSorts()
     {
 
-    	double a[] = {21.67,5.43,10, 8.94,19.54,};
+    	double a[] = {21.67,5.43,10, 8.94,19.54};
     	double sortedA[] = {5.43, 8.94,10,19.54,21.67};
     	assertArrayEquals(sortedA,SortsComparison.insertionSort(a));
     	assertArrayEquals(sortedA,SortsComparison.selectionSort(a));
     	assertArrayEquals(sortedA,SortsComparison.mergeSortRecursive(a));
+    	assertArrayEquals(sortedA,SortsComparison.mergeSortIterative(a));
     }
 
 
