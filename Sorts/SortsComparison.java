@@ -18,6 +18,10 @@
      *
      */
     static double [] insertionSort (double a[]){
+    	if(a == null)
+    		return null;
+    	if(a.length<=1)
+    		return a;
     	double tmp;
     	for(int i=1; i<a.length; i++)
     	{
@@ -49,6 +53,8 @@
      *
      */
     static double [] quickSort (double a[]){
+    	if(a == null)
+    		return null;
     	// this quicksort will implement random pivot
     	if(a.length<=1)
     		return a;
@@ -92,6 +98,7 @@
     // quicksort recursive function
     private static double[] quickSortRecursion(double a[], int start, int finish)
     {
+    	
     	if(finish-start<=1)
     		return a;
     	int pivotIndex = getPivot(start,finish);
@@ -155,6 +162,8 @@
      */
 
     static double[] mergeSortIterative (double a[]) {
+    	if(a == null)
+    		return null;
     	if(a.length<=1)
     		return a;
     	   	
@@ -210,6 +219,8 @@
      * @return after the method returns, the array must be in ascending sorted order.
      */
     static double[] mergeSortRecursive (double a[]) {
+    	if(a == null)
+    		return null;
     	if(a.length<=1)
     		return a;
     	int indexOfHalf = a.length/2;
@@ -290,9 +301,12 @@
      *
      */
     static double [] selectionSort (double a[]){
-
-         for(int i=0;i<a.length;i++)
-         {
+    	if(a == null)
+    		return null;
+    	if(a.length<=1)
+    		return a;
+        for(int i=0;i<a.length;i++)
+        {
         	 double tmp = a[i];
         	 int lowest = i;
         	 for(int j=i+1;j<a.length;j++)
@@ -305,8 +319,8 @@
         		 a[i] = a[lowest];
         		 a[lowest] = tmp;
         	 }        	 
-         }
-         return a;
+        }
+        return a;
 
     }//end selectionsort
 
