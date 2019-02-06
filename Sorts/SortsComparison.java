@@ -39,7 +39,7 @@
     			a[0] = tmp; 		
     	}
     	return a;
-    }//end insertionsort
+    }//end insertion sort
 
     /**
      * Sorts an array of doubles using Quick Sort.
@@ -49,11 +49,96 @@
      *
      */
     static double [] quickSort (double a[]){
-	
-		 //TODO: implement the sort
-
+    	// this quicksort will implement random pivot
+    	if(a.length<=1)
+    		return a;
+    	
+    	int pivotIndex = getPivot(0, a.length);
+    	
+    	int i = 0;
+    	int j = a.length -1;
+    	while(i<a.length && j>0 && j>=i)
+    	{
+    		while(i<a.length && a[i]<=a[pivotIndex] )
+    			i++;
+    		while(a[j]>=a[pivotIndex] && j>0)
+    			j--;
+    		if(j>i) {
+    			double tmp = a[i];
+    			a[i] = a[j];
+    			a[j] = tmp;
+    		}
+    	}
+    	if((a[j] > a[pivotIndex] && pivotIndex > j) || (a[j] < a[pivotIndex] && pivotIndex < j))// basically case where elements are sorted relatively to each other, then we dont swap
+    	{
+    		double tmp = a[pivotIndex];
+    		a[pivotIndex] = a[j];
+    		a[j] = tmp;
+    		pivotIndex = j;
+    	}
+    	else if((a[i] < a[pivotIndex] && pivotIndex < i) || (a[i] > a[pivotIndex] && pivotIndex > i))
+    	{
+    		double tmp = a[pivotIndex];
+    		a[pivotIndex] = a[i];
+    		a[i] = tmp;
+    		pivotIndex = i;
+    	}
+    	quickSortRecursion(a, 0, pivotIndex);
+    	quickSortRecursion(a,pivotIndex+1,a.length);
+    	
+		return a;
+    	
     }//end quicksort
-
+    // quicksort recursive function
+    private static double[] quickSortRecursion(double a[], int start, int finish)
+    {
+    	if(finish-start<=1)
+    		return a;
+    	int pivotIndex = getPivot(start,finish);
+    	
+    	int i = start;
+    	int j = finish-1;
+    	while(i<finish && j>start && j>= i)
+    	{
+    		while(i<finish && a[i]<=a[pivotIndex])
+    			i++;
+    		while(a[j]>=a[pivotIndex] && j>start)
+    			j--;
+    		if(j>i) {
+        		double tmp = a[i];
+        		a[i] = a[j];
+        		a[j] = tmp;
+    		}
+    	}
+    	//below if case is basically case where elements are sorted relatively to each other, then we don't swap, it would ruin sort
+    	if((a[j] > a[pivotIndex] && pivotIndex > j) || (a[j] < a[pivotIndex] && pivotIndex < j))
+    	{
+    		double tmp = a[pivotIndex];
+    		a[pivotIndex] = a[j];
+    		a[j] = tmp;
+    		pivotIndex = j;
+    	}
+    	else if((a[i] < a[pivotIndex] && pivotIndex < i) || (a[i] > a[pivotIndex] && pivotIndex > i))
+    	{
+    		double tmp = a[pivotIndex];
+    		a[pivotIndex] = a[i];
+    		a[i] = tmp;
+    		pivotIndex = i;		
+    	}
+    	quickSortRecursion(a, start, pivotIndex);
+    	quickSortRecursion(a,pivotIndex+1,finish);
+    	
+		return a;
+    }
+    
+    // function to get random pivot
+    private static int getPivot(int min, int max)
+    {
+    	int pivot = (int)(Math.random() * (max-min) + min);
+    	if(pivot == max)// since its index, pivot != array length
+    		pivot--;
+    	return pivot;
+    }
     /**
      * Sorts an array of doubles using Merge Sort.
      * This method is static, thus it can be called as SortComparison.sort(a)
@@ -70,7 +155,8 @@
      */
 
     static double[] mergeSortIterative (double a[]) {
-    	
+    	if(a.length<=1)
+    		return a;
     	   	
     	for(int sizeOfArray =1; sizeOfArray<a.length; sizeOfArray *= 2)
     	{
@@ -81,7 +167,7 @@
     		{
     			int leftArrayIndex = mergedArrayIndex;
     			int rightArrayIndex = leftArrayIndex+sizeOfArray;
-    			int leftArrayStop = min(rightArrayIndex,mergedArray.length);
+    			int leftArrayStop = min(rightArrayIndex,mergedArray.length); // if theres no right array fitting, the end would be end of array
     			int rightArrayStop = min(rightArrayIndex+sizeOfArray, mergedArray.length);
     			// merge arrays
     			while(leftArrayIndex<leftArrayStop && rightArrayIndex<rightArrayStop)
@@ -211,7 +297,7 @@
         	 int lowest = i;
         	 for(int j=i+1;j<a.length;j++)
         	 {
-        		 if(a[j]<tmp)
+        		 if(a[j]<a[lowest])
         			 lowest = j;
         	 }
         	 if(lowest != i) 

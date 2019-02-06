@@ -38,16 +38,20 @@ public class SortsComparisonTest
     {
 
     	double a[] = {21.67,5.43,10, 8.94,19.54};
-    	double sortedA[] = {5.43, 8.94,10,19.54,21.67};
-    	assertArrayEquals(sortedA,SortsComparison.insertionSort(a));
-    	assertArrayEquals(sortedA,SortsComparison.selectionSort(a));
-    	assertArrayEquals(sortedA,SortsComparison.mergeSortRecursive(a));
-    	assertArrayEquals(sortedA,SortsComparison.mergeSortIterative(a));
+    	double b[] = {21.67,5.43, 8.94, 10,19.54};
+    	double c[] = {21.67,10,5.43, 8.94,19.54};
+    	double d[] = {21.67,19.54, 5.43,10, 8.94};
+    	double e[] = {5.43,10,21.67, 8.94,19.54};
+    	double sorted[] = {5.43, 8.94,10,19.54,21.67};
+    	assertArrayEquals(sorted,SortsComparison.insertionSort(a));
+    	assertArrayEquals(sorted,SortsComparison.selectionSort(b));
+    	assertArrayEquals(sorted,SortsComparison.mergeSortRecursive(c));
+    	assertArrayEquals(sorted,SortsComparison.mergeSortIterative(d));
+    	assertArrayEquals(sorted,SortsComparison.quickSort(e));
     }
 
 
-    // TODO: add more tests here. Each line of code and ech decision in Collinear.java should
-    // be executed at least once from at least one test.
+   
 
     // ----------------------------------------------------------
     /**
