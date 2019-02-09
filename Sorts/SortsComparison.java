@@ -55,7 +55,7 @@
     static double [] quickSort (double a[]){
     	if(a == null)
     		return null;
-    	// this quicksort will implement random pivot
+    	// this quicksort will implement random pivot since type of quicksort was not specified
     	if(a.length<=1)
     		return a;
     	
@@ -82,7 +82,7 @@
     		a[j] = tmp;
     		pivotIndex = j;
     	}
-    	else if((a[i] < a[pivotIndex] && pivotIndex < i) || (a[i] > a[pivotIndex] && pivotIndex > i))
+    	else if( i<a.length && ((a[i] < a[pivotIndex] && pivotIndex < i) || (a[i] > a[pivotIndex] && pivotIndex > i)))
     	{
     		double tmp = a[pivotIndex];
     		a[pivotIndex] = a[i];
@@ -125,7 +125,7 @@
     		a[j] = tmp;
     		pivotIndex = j;
     	}
-    	else if((a[i] < a[pivotIndex] && pivotIndex < i) || (a[i] > a[pivotIndex] && pivotIndex > i))
+    	else if( i<finish && ((a[i] < a[pivotIndex] && pivotIndex < i) || (a[i] > a[pivotIndex] && pivotIndex > i)))
     	{
     		double tmp = a[pivotIndex];
     		a[pivotIndex] = a[i];
