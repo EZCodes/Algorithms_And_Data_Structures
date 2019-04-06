@@ -100,7 +100,7 @@ public class CompetitionDijkstra {
     		for(int k=0; k<edgeTo.length; k++)
     		{
     			edgeTo[k] = -1;
-    			distTo[k] = -1;
+    			distTo[k] = Double.POSITIVE_INFINITY;
     		}
     		for(int i=0;i<city.length;i++)
     		{
@@ -108,7 +108,7 @@ public class CompetitionDijkstra {
     			for(int j=0; j<currentIntersection.outgoingStreets.size(); j++)
     			{
     				Street relaxedStreet = currentIntersection.outgoingStreets.get(j);
-    				if(relaxedStreet.distance + distTo[i] < distTo[relaxedStreet.destination] || distTo[relaxedStreet.destination] == -1 )
+    				if(relaxedStreet.distance + distTo[i] < distTo[relaxedStreet.destination])
     				{
     					distTo[relaxedStreet.destination] = relaxedStreet.distance + distTo[i];
     					edgeTo[relaxedStreet.destination] = i;
@@ -128,7 +128,7 @@ public class CompetitionDijkstra {
     			minimumTime = longestDistance/leastSpeed;
     		}
     		else if(!isConnectedCity)
-    			minimumTime = -1;
+    			return -1;
     		else if(minimumTime != -1)
     			minimumTime = Math.max(minimumTime, longestDistance/leastSpeed);
     	}

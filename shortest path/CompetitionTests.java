@@ -6,16 +6,16 @@ public class CompetitionTests {
 
     @Test
     public void testDijkstraConstructor() {
-    	CompetitionDijkstra dijkstra = new CompetitionDijkstra("1000EWD.txt", 1, 2, 3);
+    	CompetitionDijkstra dijkstra = new CompetitionDijkstra("1000EWD.txt", 75, 71, 88);
     	System.out.println(dijkstra.timeRequiredforCompetition());
         assertEquals(2, dijkstra.timeRequiredforCompetition());
     }
 
     @Test
     public void testFWConstructor() {
-        //TODO
+    	CompetitionFloydWarshall FW = new CompetitionFloydWarshall("1000EWD.txt", 75, 71, 88);
+    	System.out.println(FW.timeRequiredforCompetition());
+        assertEquals(2, FW.timeRequiredforCompetition());
     }
-
-    //TODO - more tests
     
 }

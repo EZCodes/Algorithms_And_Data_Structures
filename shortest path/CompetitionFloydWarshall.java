@@ -19,7 +19,8 @@ import java.util.ArrayList;
  *
  * This class implements the competition using Floyd-Warshall algorithm
  */
-class Intersection{
+
+/*class Intersection{
 	ArrayList<Street> outgoingStreets;
 	// key street, value length
 	Intersection(){
@@ -36,6 +37,7 @@ class Street{
 		this.distance = distance;
 	}
 }
+*/
 public class CompetitionFloydWarshall {
 
 	private int sA;
@@ -84,8 +86,30 @@ public class CompetitionFloydWarshall {
     	double minimumTime = -2;
     	int leastSpeed = Math.min(sA, sB);
     	leastSpeed = Math.min(leastSpeed, sC);
-        //TO DO
-        return -1;
+    	double matrix[][] = makeGraphMatrix(this.city);
+    	// intermediate vertex
+    	for(int i=0; i<matrix.length; i++)
+    	{
+    		// start vertex
+    		for (int j=0; j<matrix.length; j++)
+    		{
+    			// end vertex
+    			for(int k=0; k<matrix.length; k++)
+    			{
+    				if(matrix[j][i] + matrix[i][k] < matrix[j][k])
+    					matrix[j][k] = matrix[j][i] + matrix[i][k];
+    			}
+    		}
+    	}
+    	double maxPath = findMaxPath(matrix);
+    	if(maxPath == Double.POSITIVE_INFINITY)
+    		return -1;
+    	else
+    	{
+    		minimumTime = maxPath/leastSpeed;
+    		return (int) (minimumTime+1);
+    	}
+    		
     }
     private double[][] makeGraphMatrix(Intersection[] city)
     {
@@ -95,7 +119,7 @@ public class CompetitionFloydWarshall {
     	{
     		for(int j=0; j<matrix.length; j++)
     		{
-    			matrix[i][j] = 
+    			matrix[i][j] = Double.POSITIVE_INFINITY;
     		}
     	}
     	// make a matrix
@@ -108,6 +132,19 @@ public class CompetitionFloydWarshall {
     		}
     	}
     	return matrix;
+    }
+    private double findMaxPath(double matrix[][])
+    {
+    	double maxPath = -1;
+    	for(int i=0; i<matrix.length; i++ )
+    	{
+    		for(int j=0; j<matrix.length; j++)
+    		{
+    			if(matrix[i][j]<maxPath)
+    				maxPath = matrix[i][j];
+    		}
+    	}
+    	return maxPath;
     }
 
 }
