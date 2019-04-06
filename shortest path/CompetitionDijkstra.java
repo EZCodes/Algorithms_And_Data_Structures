@@ -51,7 +51,11 @@ public class CompetitionDijkstra {
     */
     CompetitionDijkstra (String filename, int sA, int sB, int sC){
     	
-    	File cityFile = new File(filename);
+    	File cityFile; 
+    	if(filename != null)
+    		cityFile = new File(filename);
+    	else
+    		cityFile = null; // handled later
     	this.sA = sA;
     	this.sB = sB;
     	this.sC = sC;
@@ -84,7 +88,7 @@ public class CompetitionDijkstra {
 			}
 			in.close();
 		} catch (Exception e) {
-
+			this.city = new Intersection[0];
 		}
     	
     }

@@ -74,6 +74,9 @@ public class CompetitionTests {
         
         dijkstra = new CompetitionDijkstra("input-K.txt", 73, 76, 81);
         assertEquals(220, dijkstra.timeRequiredforCompetition()); 
+        
+        dijkstra = new CompetitionDijkstra(null, 73, 76, 81);
+        assertEquals(-1, dijkstra.timeRequiredforCompetition());
 
     }
 
@@ -117,6 +120,9 @@ public class CompetitionTests {
         
         FW = new CompetitionFloydWarshall("input-K.txt", 73, 76, 81	);
         assertEquals(220, FW.timeRequiredforCompetition()); 
+        
+        FW = new CompetitionFloydWarshall(null, 73, 76, 81	);
+        assertEquals(-1, FW.timeRequiredforCompetition()); 
     }
     
 }
