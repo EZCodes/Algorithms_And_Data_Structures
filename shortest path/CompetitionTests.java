@@ -9,8 +9,8 @@ import org.junit.Test;
  * As my data structures i use classes that represent intersections and streets. Intersection basically contains
  * a collection(ArrayList) of streets going out of that intersection. Then the overall graph, the city is just an array of all intersections.
  * I use this data structure cause it's intuitive, readable and information is easily accessible as well as it can be easily converted into other forms.
- * Futhermore, in Dijksta, as the queue for the algorithm, i use the unordered array, as we are not focused on performance and it's
- * the simplest way to implement the queue (and it's good for dense graphs).
+ * Futhermore, in Dijksta, I use the Prioryty Queue for the algorithm, which is based on unordered list, as we are not focused on performance and it's
+ * the simplest way to implement the queue and it behaves well with high density .
  * 
  * In Floyd-Warshall for computing i use matrix which contain the distances from one vertex to another (as in default implementation),
  * The matrix is built from java classes i mentioned previously. Matrix allows for quick and simple computing of the shortest path.
@@ -41,20 +41,20 @@ public class CompetitionTests {
 
         dijkstra = new CompetitionDijkstra("1000EWD.txt", 75, 71, 55);
         assertEquals(26, dijkstra.timeRequiredforCompetition());
- /*
-        dijkstra = new CompetitionDijkstra("input-A.txt", 75, 71, 88);
-        assertEquals(1, dijkstra.timeRequiredforCompetition());
+ 
+      //  dijkstra = new CompetitionDijkstra("input-A.txt", 75, 71, 88);
+      //  assertEquals(1, dijkstra.timeRequiredforCompetition());
 
-        dijkstra = new CompetitionDijkstra("input-B.txt", 75, 71, 88);
-        assertEquals(1, dijkstra.timeRequiredforCompetition());
+        dijkstra = new CompetitionDijkstra("input-B.txt",60, 80, 50);
+        assertEquals(10000, dijkstra.timeRequiredforCompetition());//
 
-        dijkstra = new CompetitionDijkstra("input-C.txt", 75, 71, 88);
-        assertEquals(1, dijkstra.timeRequiredforCompetition());
+      //  dijkstra = new CompetitionDijkstra("input-C.txt", 75, 71, 88);
+       // assertEquals(1, dijkstra.timeRequiredforCompetition());
 
-        dijkstra = new CompetitionDijkstra("input-D.txt", 75, 71, 88);
-        assertEquals(1, dijkstra.timeRequiredforCompetition());
+        dijkstra = new CompetitionDijkstra("input-D.txt", -1, -1, -1);
+        assertEquals(-1, dijkstra.timeRequiredforCompetition());
 
-        dijkstra = new CompetitionDijkstra("input-E.txt", 75, 71, 88);
+       /* dijkstra = new CompetitionDijkstra("input-E.txt", 75, 71, 88);
         assertEquals(1, dijkstra.timeRequiredforCompetition());
 
         dijkstra = new CompetitionDijkstra("input-F.txt", 75, 71, 88);
@@ -70,7 +70,10 @@ public class CompetitionTests {
         assertEquals(1, dijkstra.timeRequiredforCompetition());
 		*/
         dijkstra = new CompetitionDijkstra("input-J.txt", 75, 71, 88);
-        assertEquals(-1, dijkstra.timeRequiredforCompetition()); 
+        assertEquals(-1, dijkstra.timeRequiredforCompetition()); //
+        
+        dijkstra = new CompetitionDijkstra("input-K.txt", 73, 76, 81);
+        assertEquals(220, dijkstra.timeRequiredforCompetition()); 
 
     }
 
@@ -81,19 +84,19 @@ public class CompetitionTests {
         
         FW = new CompetitionFloydWarshall("1000EWD.txt", 75, 71, 55);
         assertEquals(26, FW.timeRequiredforCompetition());
+        
+      //  FW = new CompetitionFloydWarshall("input-A.txt", 75, 71, 88);
+      //  assertEquals(1, FW.timeRequiredforCompetition());
+        
+        FW = new CompetitionFloydWarshall("input-B.txt", 60, 80, 50);
+        assertEquals(10000, FW.timeRequiredforCompetition());
+        
+       // FW = new CompetitionFloydWarshall("input-C.txt", 75, 71, 88);
+       // assertEquals(1, FW.timeRequiredforCompetition());
+        
+        FW = new CompetitionFloydWarshall("input-D.txt", -1, -1, -1);
+        assertEquals(-1, FW.timeRequiredforCompetition());
         /*
-        FW = new CompetitionFloydWarshall("input-A.txt", 75, 71, 88);
-        assertEquals(1, FW.timeRequiredforCompetition());
-        
-        FW = new CompetitionFloydWarshall("input-B.txt", 75, 71, 88);
-        assertEquals(1, FW.timeRequiredforCompetition());
-        
-        FW = new CompetitionFloydWarshall("input-C.txt", 75, 71, 88);
-        assertEquals(1, FW.timeRequiredforCompetition());
-        
-        FW = new CompetitionFloydWarshall("input-D.txt", 75, 71, 88);
-        assertEquals(1, FW.timeRequiredforCompetition());
-        
         FW = new CompetitionFloydWarshall("input-E.txt", 75, 71, 88);
         assertEquals(1, FW.timeRequiredforCompetition());
         
@@ -112,8 +115,8 @@ public class CompetitionTests {
         FW = new CompetitionFloydWarshall("input-J.txt", 75, 71, 88);
         assertEquals(-1, FW.timeRequiredforCompetition());
         
-       // FW = new CompetitionFloydWarshall("input-K.txt", 75, 71, 88);
-       // assertEquals(1, FW.timeRequiredforCompetition()); 
+        FW = new CompetitionFloydWarshall("input-K.txt", 73, 76, 81	);
+        assertEquals(220, FW.timeRequiredforCompetition()); 
     }
     
 }

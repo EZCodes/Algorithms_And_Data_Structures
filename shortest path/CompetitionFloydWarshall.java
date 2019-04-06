@@ -83,7 +83,7 @@ public class CompetitionFloydWarshall {
 			}
 			in.close();
 		} catch (Exception e) {
-
+			
 		}
     }	
 
@@ -94,6 +94,8 @@ public class CompetitionFloydWarshall {
     	double minimumTime = -2;
     	int leastSpeed = Math.min(sA, sB);
     	leastSpeed = Math.min(leastSpeed, sC);
+    	if(leastSpeed <= 0)
+    		return -1;
     	double matrix[][] = makeGraphMatrix(this.city);
     	// intermediate vertex
     	for(int i=0; i<matrix.length; i++)
@@ -115,7 +117,7 @@ public class CompetitionFloydWarshall {
     	else
     	{
     		minimumTime = (maxPath*1000)/leastSpeed;
-    		return (int) (minimumTime+1);
+    		return (int) (Math.ceil(minimumTime));
     	}
     		
     }

@@ -50,7 +50,7 @@ public class CompetitionDijkstra {
      * @param sA, sB, sC: speeds for 3 contestants
     */
     CompetitionDijkstra (String filename, int sA, int sB, int sC){
- 	
+    	
     	File cityFile = new File(filename);
     	this.sA = sA;
     	this.sB = sB;
@@ -94,16 +94,19 @@ public class CompetitionDijkstra {
     * @return int: minimum minutes that will pass before the three contestants can meet
      */
     public int timeRequiredforCompetition(){
-    	double minimumTime = -2;
+    	double minimumTime = -1;
     	int leastSpeed = Math.min(sA, sB);
     	leastSpeed = Math.min(leastSpeed, sC);
+    	if(leastSpeed < 50)
+    		return -1;
     	for(int finish=0;finish<city.length;finish++)
     	{
 
     		double[] distTo = new double[city.length];
     		int edgeTo[] = new int[city.length];
-    		ArrayList<Integer> queue = new ArrayList<Integer>();
-    		queue.add(finish);
+    		ArrayList<Integer> pQueue = new ArrayList<Integer>();
+    		ArrayList<Integer> visited = new ArrayList<Integer>();
+    		pQueue.add(finish);
     		// initialize edgeTo and distTo
     		for(int k=0; k<edgeTo.length; k++)
     		{
@@ -113,10 +116,10 @@ public class CompetitionDijkstra {
     		distTo[finish] = 0;
     		edgeTo[finish] = finish;
     		// counter also indicates if vertex visited
-    		int counter = 0;
-    		while(counter < queue.size())
+    		while(!pQueue.isEmpty())
     		{
-    			int currentIntersectionNumber = queue.get(counter);
+    			int minIndex = getMinimal(pQueue, distTo);
+    			int currentIntersectionNumber = pQueue.remove(minIndex);
     			Intersection currentIntersection = city[currentIntersectionNumber];
     			for(int j=0; j<currentIntersection.outgoingStreets.size(); j++)
     			{
@@ -126,10 +129,11 @@ public class CompetitionDijkstra {
     					distTo[relaxedStreet.destination] = relaxedStreet.distance + distTo[currentIntersectionNumber];
     					edgeTo[relaxedStreet.destination] = currentIntersectionNumber;
     				}   
-    				if(!queue.contains(relaxedStreet.destination))
-    					queue.add(relaxedStreet.destination);
+    				if(!visited.contains(relaxedStreet.destination) && !pQueue.contains(relaxedStreet.destination))
+    					pQueue.add(relaxedStreet.destination);
     			}
-    			counter++;
+    			visited.add(currentIntersectionNumber);
+    			
     		}
     		Arrays.sort(distTo);
     		double longestDistance = distTo[distTo.length-1];
@@ -139,18 +143,28 @@ public class CompetitionDijkstra {
     			if(edgeTo[l] == -1)
     				isConnectedCity = false;
     		}
-    		if(minimumTime == -2)
+    		if(minimumTime == -1)
     		{
     			minimumTime = (longestDistance*1000)/leastSpeed;
     		}
     		else if(!isConnectedCity)
     			return -1;
-    		else if(minimumTime != -1)
+    		else
     			minimumTime = Math.max(minimumTime, (longestDistance*1000)/leastSpeed);
     	}
     		
     	
-        return (int)(minimumTime+1) ;
+        return (int)(Math.ceil(minimumTime)) ;
+    }
+    private int getMinimal(ArrayList<Integer> queue, double[] distTo)
+    {
+    	int currentMin = 0;
+    	for(int i=0;i<queue.size();i++)
+    	{  		  			
+    		if(distTo[queue.get(currentMin)] > distTo[queue.get(i)])
+    				currentMin = i; 				 			
+    	}
+    	return currentMin;
     }
 
 }
