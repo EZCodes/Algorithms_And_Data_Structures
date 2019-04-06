@@ -73,7 +73,7 @@ public class CompetitionFloydWarshall {
 				if(number != null) 
 				{
 					String[] numbers = number.split("\\s+");
-					if(numbers[0].equals("")) // handing the case when there's space in front
+					if(numbers[0].equals("")) // handling the case when there's space in front
 						position++;
 					int source = Integer.parseInt(numbers[position++]);
 					int destination = Integer.parseInt(numbers[position++]);
@@ -83,7 +83,7 @@ public class CompetitionFloydWarshall {
 			}
 			in.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+
 		}
     }	
 
@@ -110,7 +110,7 @@ public class CompetitionFloydWarshall {
     		}
     	}
     	double maxPath = findMaxPath(matrix);
-    	if(maxPath == Double.POSITIVE_INFINITY)
+    	if(maxPath == Double.POSITIVE_INFINITY || maxPath == -1)
     		return -1;
     	else
     	{
@@ -127,7 +127,10 @@ public class CompetitionFloydWarshall {
     	{
     		for(int j=0; j<matrix.length; j++)
     		{
-    			matrix[i][j] = Double.POSITIVE_INFINITY;
+    			if(i == j)
+    				matrix[i][j] = 0;
+    			else
+    				matrix[i][j] = Double.POSITIVE_INFINITY;
     		}
     	}
     	// make a matrix

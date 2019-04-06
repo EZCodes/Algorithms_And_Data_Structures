@@ -84,7 +84,7 @@ public class CompetitionDijkstra {
 			}
 			in.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+
 		}
     	
     }

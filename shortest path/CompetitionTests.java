@@ -11,36 +11,36 @@ public class CompetitionTests {
 
         dijkstra = new CompetitionDijkstra("1000EWD.txt", 75, 71, 55);
         assertEquals(26, dijkstra.timeRequiredforCompetition());
-
+ /*
         dijkstra = new CompetitionDijkstra("input-A.txt", 75, 71, 88);
-       // assertEquals(1, dijkstra.timeRequiredforCompetition());
+        assertEquals(1, dijkstra.timeRequiredforCompetition());
 
         dijkstra = new CompetitionDijkstra("input-B.txt", 75, 71, 88);
-      //  assertEquals(1, dijkstra.timeRequiredforCompetition());
+        assertEquals(1, dijkstra.timeRequiredforCompetition());
 
         dijkstra = new CompetitionDijkstra("input-C.txt", 75, 71, 88);
-     //   assertEquals(1, dijkstra.timeRequiredforCompetition());
+        assertEquals(1, dijkstra.timeRequiredforCompetition());
 
         dijkstra = new CompetitionDijkstra("input-D.txt", 75, 71, 88);
- //       assertEquals(1, dijkstra.timeRequiredforCompetition());
+        assertEquals(1, dijkstra.timeRequiredforCompetition());
 
         dijkstra = new CompetitionDijkstra("input-E.txt", 75, 71, 88);
-  //      assertEquals(1, dijkstra.timeRequiredforCompetition());
+        assertEquals(1, dijkstra.timeRequiredforCompetition());
 
         dijkstra = new CompetitionDijkstra("input-F.txt", 75, 71, 88);
-    //    assertEquals(1, dijkstra.timeRequiredforCompetition());
+        assertEquals(1, dijkstra.timeRequiredforCompetition());
 
         dijkstra = new CompetitionDijkstra("input-G.txt", 75, 71, 88);
-      //  assertEquals(1, dijkstra.timeRequiredforCompetition());
+        assertEquals(1, dijkstra.timeRequiredforCompetition());
 
         dijkstra = new CompetitionDijkstra("input-H.txt", 75, 71, 88);
-        //assertEquals(1, dijkstra.timeRequiredforCompetition());
+        assertEquals(1, dijkstra.timeRequiredforCompetition());
 
         dijkstra = new CompetitionDijkstra("input-I.txt", 75, 71, 88);
-//        assertEquals(1, dijkstra.timeRequiredforCompetition());
-
+        assertEquals(1, dijkstra.timeRequiredforCompetition());
+		*/
         dijkstra = new CompetitionDijkstra("input-J.txt", 75, 71, 88);
-  //      assertEquals(1, dijkstra.timeRequiredforCompetition());
+        assertEquals(-1, dijkstra.timeRequiredforCompetition()); 
 
     }
 
@@ -78,12 +78,12 @@ public class CompetitionTests {
         
         FW = new CompetitionFloydWarshall("input-I.txt", 75, 71, 88);
         assertEquals(1, FW.timeRequiredforCompetition());
-        
+        */
         FW = new CompetitionFloydWarshall("input-J.txt", 75, 71, 88);
-        assertEquals(1, FW.timeRequiredforCompetition());
+        assertEquals(-1, FW.timeRequiredforCompetition());
         
-        FW = new CompetitionFloydWarshall("input-K.txt", 75, 71, 88);
-        assertEquals(1, FW.timeRequiredforCompetition()); */
+       // FW = new CompetitionFloydWarshall("input-K.txt", 75, 71, 88);
+       // assertEquals(1, FW.timeRequiredforCompetition()); 
     }
     
 }
