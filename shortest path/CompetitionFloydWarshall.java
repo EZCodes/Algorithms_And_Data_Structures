@@ -114,7 +114,7 @@ public class CompetitionFloydWarshall {
     		return -1;
     	else
     	{
-    		minimumTime = maxPath/leastSpeed;
+    		minimumTime = (maxPath*1000)/leastSpeed;
     		return (int) (minimumTime+1);
     	}
     		

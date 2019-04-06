@@ -141,12 +141,12 @@ public class CompetitionDijkstra {
     		}
     		if(minimumTime == -2)
     		{
-    			minimumTime = longestDistance/leastSpeed;
+    			minimumTime = (longestDistance*1000)/leastSpeed;
     		}
     		else if(!isConnectedCity)
     			return -1;
     		else if(minimumTime != -1)
-    			minimumTime = Math.max(minimumTime, longestDistance/leastSpeed);
+    			minimumTime = Math.max(minimumTime, (longestDistance*1000)/leastSpeed);
     	}
     		
     	
