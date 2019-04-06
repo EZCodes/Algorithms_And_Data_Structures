@@ -66,13 +66,21 @@ public class CompetitionDijkstra {
 			}
 			number = in.readLine();
 			int streetsNumb = Integer.parseInt(number);
+			int position;
 			for(int i=0; i<streetsNumb; i++)
 			{
+				position = 0;
 				number = in.readLine();
-				int source = Integer.parseInt(number.substring(0,1));
-				int destination = Integer.parseInt(number.substring(2, 3));
-				double distance = Double.parseDouble(number.substring(4));
-				city[source].outgoingStreets.add(new Street(destination,distance));
+				if(number != null) 
+				{
+					String[] numbers = number.split("\\s+");
+					if(numbers[0].equals("")) // handing the case when there's space in front
+						position++;
+					int source = Integer.parseInt(numbers[position++]);
+					int destination = Integer.parseInt(numbers[position++]);
+					double distance = Double.parseDouble(numbers[position++]);
+					city[source].outgoingStreets.add(new Street(destination,distance));
+				}
 			}
 			in.close();
 		} catch (Exception e) {
@@ -94,26 +102,34 @@ public class CompetitionDijkstra {
 
     		double[] distTo = new double[city.length];
     		int edgeTo[] = new int[city.length];
-    		ArrayList<Intersection> queue = new ArrayList<Intersection>();
-    		queue.add(city[finish]);
+    		ArrayList<Integer> queue = new ArrayList<Integer>();
+    		queue.add(finish);
     		// initialize edgeTo and distTo
     		for(int k=0; k<edgeTo.length; k++)
     		{
     			edgeTo[k] = -1;
-    			distTo[k] = Double.POSITIVE_INFINITY;
+    			distTo[k] = -1;
     		}
-    		for(int i=0;i<city.length;i++)
+    		distTo[finish] = 0;
+    		edgeTo[finish] = finish;
+    		// counter also indicates if vertex visited
+    		int counter = 0;
+    		while(counter < queue.size())
     		{
-    			Intersection currentIntersection = city[i];
+    			int currentIntersectionNumber = queue.get(counter);
+    			Intersection currentIntersection = city[currentIntersectionNumber];
     			for(int j=0; j<currentIntersection.outgoingStreets.size(); j++)
     			{
     				Street relaxedStreet = currentIntersection.outgoingStreets.get(j);
-    				if(relaxedStreet.distance + distTo[i] < distTo[relaxedStreet.destination])
+    				if(relaxedStreet.distance + distTo[currentIntersectionNumber] < distTo[relaxedStreet.destination] || distTo[relaxedStreet.destination] == -1)
     				{
-    					distTo[relaxedStreet.destination] = relaxedStreet.distance + distTo[i];
-    					edgeTo[relaxedStreet.destination] = i;
-    				}   						
+    					distTo[relaxedStreet.destination] = relaxedStreet.distance + distTo[currentIntersectionNumber];
+    					edgeTo[relaxedStreet.destination] = currentIntersectionNumber;
+    				}   
+    				if(!queue.contains(relaxedStreet.destination))
+    					queue.add(relaxedStreet.destination);
     			}
+    			counter++;
     		}
     		Arrays.sort(distTo);
     		double longestDistance = distTo[distTo.length-1];

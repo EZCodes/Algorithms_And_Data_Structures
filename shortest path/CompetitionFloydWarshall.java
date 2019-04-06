@@ -65,13 +65,21 @@ public class CompetitionFloydWarshall {
 			}
 			number = in.readLine();
 			int streetsNumb = Integer.parseInt(number);
+			int position;
 			for(int i=0; i<streetsNumb; i++)
 			{
+				position = 0;
 				number = in.readLine();
-				int source = Integer.parseInt(number.substring(0,1));
-				int destination = Integer.parseInt(number.substring(2, 3));
-				double distance = Double.parseDouble(number.substring(4));
-				city[source].outgoingStreets.add(new Street(destination,distance));
+				if(number != null) 
+				{
+					String[] numbers = number.split("\\s+");
+					if(numbers[0].equals("")) // handing the case when there's space in front
+						position++;
+					int source = Integer.parseInt(numbers[position++]);
+					int destination = Integer.parseInt(numbers[position++]);
+					double distance = Double.parseDouble(numbers[position++]);
+					city[source].outgoingStreets.add(new Street(destination,distance));
+				}
 			}
 			in.close();
 		} catch (Exception e) {
@@ -140,7 +148,7 @@ public class CompetitionFloydWarshall {
     	{
     		for(int j=0; j<matrix.length; j++)
     		{
-    			if(matrix[i][j]<maxPath)
+    			if(matrix[i][j]>maxPath)
     				maxPath = matrix[i][j];
     		}
     	}
